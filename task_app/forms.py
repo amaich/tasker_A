@@ -1,6 +1,7 @@
 from django import forms
+from .models import *
 
-class TaskForm(forms.Form):
-    summary = forms.CharField()
-    description = forms.CharField()
-    slug = forms.CharField()
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = TaskModel
+        fields = ['summary', 'description', 'slug']
