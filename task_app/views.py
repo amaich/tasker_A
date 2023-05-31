@@ -1,8 +1,10 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
 from .models import *
