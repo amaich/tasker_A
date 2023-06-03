@@ -1,3 +1,5 @@
-<h1>Hello, World!</h1>
-<p><a href="{% url 'task_auth:login' %}">Login</a></p>
-<p><a href="{% url 'task_app:task_list' %}">Task list</a></p>
+{% extends "task_app/base.html" %}
+
+{% block content %}
+HI
+{% endblock content %}
