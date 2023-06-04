@@ -1,6 +1,9 @@
+{% extends "task_app/base.html" %}
+{% block content %}
 <form action="/tasks/create" method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <input type="submit" value="Save">
+{% endblock content %}
 </form>
 

@@ -12,7 +12,7 @@ from .models import *
 from .forms import *
 
 
-def hello_world(request):
+def start_page(request):
     return render(request, 'task_app/index.html', {})
 
 
@@ -29,7 +29,7 @@ class TaskDetailView(DetailView):
     context_object_name = 'task'
 
 
-class TaskCreateView(View):
+class TaskCreateView(LoginRequiredMixin, View):
     def get(self, request):
         form = TaskForm()
         return render(request, 'task_app/task_create.html', {'form': form})

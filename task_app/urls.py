@@ -4,7 +4,7 @@ from .views import *
 app_name = 'task_app'
 
 urlpatterns = [
-    path('', hello_world),
+    path('', start_page, name='start_page'),
     path('tasks/', TaskListView.as_view(), name='task_list'),
     path('tasks/create', TaskCreateView.as_view(), name='task_create'),
     path('tasks/<slug:slug>', TaskDetailView.as_view(), name='task_detail'),
