@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.views import View
+from django.views.generic.base import ContextMixin
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseRedirect
@@ -43,11 +44,18 @@ class TaskCreateView(LoginRequiredMixin, View):
             new_task.save()
             return HttpResponseRedirect(reverse('task_app:task_detail', kwargs={'slug': request.POST.get('slug')}))
 
+
 class TaskUpdateView(View):
+    extra_context = {'username': 'SOSO_BITCH'}
+    context = {}
+
     def get(self, request, slug):
         update_task = get_object_or_404(TaskModel, slug=slug)
         form = TaskForm(instance=update_task)
-        return render(request, 'task_app/task_update.html', {'form': form, 'task': update_task})
+        self.context['form'] = form
+        self.context['task'] = update_task
+        self.context = super().add_extra_context()
+        return render(request, 'task_app/task_update.html', self.context)
 
     def post(self, request, slug):
         update_task = get_object_or_404(TaskModel, slug=slug)
@@ -56,8 +64,10 @@ class TaskUpdateView(View):
             form.save()
             return HttpResponseRedirect(reverse('task_app:task_detail', kwargs={'slug': request.POST.get('slug')}))
 
+
 class TaskDeleteView(View):
     def get(self, request, slug):
         delete_task = get_object_or_404(TaskModel, slug=slug)
         delete_task.delete()
         return HttpResponseRedirect(reverse('task_app:task_list'))
+

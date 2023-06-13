@@ -22,7 +22,7 @@ class UserLogin(View):
 
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('task_auth:auth_check', kwargs={}))
+    return HttpResponseRedirect(reverse('task_app:task_list', kwargs={}))
 
 
 def is_auth_check(request):
