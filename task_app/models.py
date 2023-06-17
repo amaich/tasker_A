@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.text import slugify
 
+import uuid
+
 
 class TaskModel(models.Model):
     summary = models.CharField(max_length=100, verbose_name='Summary')
@@ -12,6 +14,10 @@ class TaskModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     slug = models.SlugField(null=False)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(str(self.summary[:20]))
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.summary
