@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -13,7 +13,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="9be4826c-06e2-46dc-b68b-7e542e69329f">
-      <console name="Tasker_A" type="STANDARD" schema="" session="Main" />
+      <console name="Tasker_A" type="STANDARD" schema="main" session="Main"><![CDATA[select * from task_app_taskmodel]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -23,9 +23,13 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="9be4826c-06e2-46dc-b68b-7e542e69329f" dataset="main.auth_user" active-filter-id="" />
     <filter-actions connection-id="9be4826c-06e2-46dc-b68b-7e542e69329f" dataset="main.task_app_taskmodel" active-filter-id="497ac667-af22-4790-ba5b-529ca9272070">
       <filter id="497ac667-af22-4790-ba5b-529ca9272070" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
     </filter-actions>
+  </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
@@ -39,14 +43,16 @@
           <description value="" />
           <database-type value="SQLITE" />
           <config-type value="BASIC" />
-          <database-version value="3.39" />
-          <driver-source value="BUILTIN" />
+          <database-version value="3.41" />
+          <driver-source value="BUNDLED" />
           <driver-library value="" />
           <driver value="" />
           <url-type value="FILE" />
           <host value="" />
           <port value="" />
           <database value="" />
+          <tns-folder value="" />
+          <tns-profile value="" />
           <files>
             <file path="$PROJECT_DIR$/db.sqlite3" schema="main" />
           </files>
@@ -514,5 +520,8 @@
         </visibility-settings>
       </environment>
     </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
   </component>
 </project>

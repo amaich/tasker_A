@@ -1,6 +1,6 @@
 {% extends "task_app/base.html" %}
 {% block content %}
-<form action="{% url 'task_app:task_update' task.slug %}" method="post">
+<form action="{% url 'task_app:task_update' task.id %}" method="post">
   {% csrf_token %}
   {{ form }}
   <input type="submit" value="save">
