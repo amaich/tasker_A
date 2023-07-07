@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -17,7 +19,7 @@ class TaskListView(ListView):
     model = TaskModel
     template_name = 'task_app/task_list.html'
     context_object_name = 'tasks'
-    queryset = TaskModel.objects.all()[:10]
+    queryset = TaskModel.objects.select_related("assignee")
 
 
 class TaskDetailView(DetailView):
@@ -37,15 +39,22 @@ class TaskUpdateView(UpdateView):
     model = TaskModel
     template_name = 'task_app/task_update.html'
     fields = ['summary', 'description', 'assignee']
-    success_url = reverse_lazy('task_app:task_list')
     context_object_name = 'task'
 
-
-class TaskDeleteView(DeleteView):
-    model = TaskModel
-    success_url = reverse_lazy('task_app:task_list')
+    def get_success_url(self):
+        return reverse('task_app:task_detail', kwargs={'pk': self.object.id})
 
 
+class TaskDeleteView(View):
+    def get(self, request, pk):
+        delete_task = get_object_or_404(TaskModel, pk=pk)
+        delete_task.delete()
+        return HttpResponseRedirect(reverse('task_app:task_list'))
+
+
+# class TaskDeleteView(DeleteView):
+#     model = TaskModel
+#     success_url = reverse_lazy('task_app:task_list')
 # class TaskCreateView(LoginRequiredMixin, View):
 #     def get(self, request):
 #         form = TaskForm()

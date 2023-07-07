@@ -10,6 +10,7 @@ class TaskModel(models.Model):
     summary = models.CharField(max_length=100, verbose_name='Summary')
     description = models.TextField(verbose_name='Description')
     assignee = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
+    due_date = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
