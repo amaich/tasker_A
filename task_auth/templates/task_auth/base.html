@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=10">
     <title>{% block title %}Your title{% endblock %}</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'task_app/styles.css' %}">
 </head>
 <body>
     <div class="content-wrapper">
-        <header class="header">
+        <header>
             {% if user.is_authenticated %}
-                <p style="font-size: 30px; margin: 0; padding: 10px 1em;">Welcome, {{ user.get_username }}. Thanks for logging in.</p>
-                <p style="font-size: 30px; margin: 0; padding: 10px 1em;"><a href="{% url 'task_auth:logout' %}">Logout</a></p>
+                <p>Welcome, {{ user.get_username }}. Thanks for logging in.</p>
+                <p><a href="{% url 'task_auth:logout' %}">Logout</a></p>
             {% else %}
-                <p style="font-size: 30px; margin: 0; padding: 10px 1em;"><a href="{% url 'task_auth:login' %}">Login</a></p>
-                <p style="font-size: 30px; margin: 0; padding: 10px 1em;"><a href="{% url 'task_auth:registration' %}">Registration</a><>
+                <p><a href="{% url 'task_auth:login' %}">Login</a></p>
+                <p><a href="{% url 'task_auth:registration' %}">Registration</a><>
             {% endif %}
         </header>
+        <p>--------------</p>
         <div class="container clearfix">
             <main class="content">
                 {% block content %}
-                <p style="text-align: center; font-size: 30px; margin: 0; padding: 1.5em 0;">Hello, html!</p>
+                <p>Hello, html!</p>
                 {% endblock %}
             </main>
         </div>

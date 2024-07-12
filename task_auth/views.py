@@ -18,7 +18,7 @@ class UserLogin(View):
             login(request, user)
             return HttpResponseRedirect(reverse('task_app:task_list', kwargs={}))
         else:
-            return HttpResponse('nea')
+            return HttpResponse('error')
 
 
 def user_logout(request):
@@ -31,11 +31,11 @@ class UserRegistration(View):
         return render(request, 'task_auth/user_registration.html', {})
 
     def post(self, request):
-        user = User.objects.create_user(username = request.POST["username"],
-                                        password = request.POST["password"])
+        user = User.objects.create_user(username=request.POST["username"],
+                                        password=request.POST["password"])
         user.save()
         if user is not None:
-            return HttpResponseRedirect(reverse('task_auth:login'), kwargs={})
+            return HttpResponseRedirect(reverse('task_auth:login', kwargs={}))
         else:
             return HttpResponse('nea')
 
