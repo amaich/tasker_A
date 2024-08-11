@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('task_app.urls')),
     path('account/', include('task_auth.urls')),
+    path('prometheus/', include('django_prometheus.urls'))
 ]
